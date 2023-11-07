@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+
+{% block title %}
+Upload image
+{% endblock %}
+
+{% block content %}
+
+<div class="container-lg py-5 h-100">
+
+    <div class="row">
+        <!-- Upload image -->
+        <div class="col">
+            <!-- Content here -->
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group py-3">
+                    <label for="image_file">Upload Image</label>
+                    <input type="file" class="form-control-file" id="image_file" name="image_file">
+                    <img class="img-thumbnail" id="previewImage" src="#" alt="Image Preview" style="display: none;">
+                </div>
+                <button type="submit" class="btn btn-primary">Upload and extract text</button>
+            </form>
+        </div>
+
+        <!-- Predicted text -->
+        <div class="col pt-4">
+            <div class="row">
+                <h3>Predicted text</h3>
+            </div>
+            <div class="row">
+                {{ predicted_text }}
+            </div>
+        </div>
+    </div>
+
+    {% if predicted_image %}
+    <div class="container text-center">
+        <img class="img-fluid" src="{{ url_for('static', filename=predicted_image) }}" alt="Result Image">
+    </div>
+    {% endif %}
+
+
+</div>
+
+{% endblock %}
